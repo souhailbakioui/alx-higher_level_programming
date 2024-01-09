@@ -7,4 +7,4 @@ def delete_at(my_list=[], idx=0):
 
     # Delete the item at the specified position without using pop()
     new_list = my_list[:idx] + my_list[idx+1:]
-    return new_list
+    return new_list 
