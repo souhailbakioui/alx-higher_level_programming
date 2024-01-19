@@ -1,32 +1,28 @@
 #include "lists.h"
-#include <stdio.h>
 
 /**
-  * check_cycle - Checks if a singly linked list has a cycle in it
-  * @list: The singly linked list to check
-  *
-  * Return: 1 if has a cycle in it or 0 if not
-  */
+ * check_cycle - checks if a singly linked list has a cycle in it
+ * @list: pointer to the head of the list
+ * Return: 0 if there is no cycle, 1 if there is a cycle
+ */
+
 int check_cycle(listint_t *list)
 {
-	listint_t *turtle = list, *hare = list;
-	int found = 0;
+	listint_t *slow, *fast;
 
-	while ((turtle && hare) && hare->next)
-	{		
-		turtle = turtle->next;
+	if (list == NULL)
+		return (0);
 
-		if (hare->next || hare->next->next)	
-			hare = hare->next->next;
-		else
-			break;
+	slow = list;
+	fast = list->next;
 
-		if (turtle == hare)
-		{
-			found = 1;
-			break;
-		}
+	while (fast != NULL && fast->next != NULL)
+	{
+	if (slow == fast)
+		return (1);
+	slow = slow->next;
+	fast = fast->next->next;
 	}
 
-	return (found);
+	return (0);
 }
